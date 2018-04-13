@@ -3,6 +3,6 @@
 To set up your Mac, run the following:
 
 ```bash
-$ curl https://raw.githubusercontent.com/spilth/macOS/master/install | bash
+$ curl https://raw.githubusercontent.com/spilth/macOS/master/setup | bash
 ```
 
