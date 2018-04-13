@@ -3,6 +3,21 @@
 # Fail immediately if any errors occur
 set -e
 
+add_line_to_file() {
+  line=$1
+  file=$2
+
+  echo
+  if grep --fixed-strings --line-regexp --quiet "$line" $file
+  then
+    echo "SKIPPING: '$line' already exists in '$file'"
+  else
+    echo "Adding '$line' to '$file'"
+
+    echo "$line" >> $file
+  fi
+}
+
 clear
 
 echo "Caching password..."
@@ -37,8 +52,50 @@ echo
 echo "Cleaning up your Homebrew installation..."
 brew cleanup
 
+add_line_to_file 'export PATH="/usr/local/sbin:$PATH"' ~/.bash_profile
+
+echo
+
+brew install git
+brew install rbenv
+add_line_to_file 'eval "$(rbenv init -)"' ~/.bash_profile
+
+brew install flac lame libao libvorbis opencore-amr opusfile mad ffmpeg
+brew install sox --with-opencore-amr --with-opusfile --with-libvorbis --with-flac --with-libsndfile --with-libao --with-lame
+
+brew cask install atom
 brew cask install iterm2
+brew cask install macvim
 brew cask install shiftit
+
+echo
+pushd ~/
+if [ ! -d ~/.vim ]; then
+  echo "Installing vim configuration"
+  git clone https://github.com/pivotal/vim-config.git ~/.vim
+  ~/.vim/bin/install
+else
+  echo "vim configuration already in place."
+fi
+popd
+
+echo
+pushd ~/
+if [ ! -d ~/.bash_it ]; then
+  echo "Installing bash-it"
+  git clone https://github.com/Bash-it/bash-it.git ~/.bash_it
+  ~/.bash_it/install.sh --silent
+  source ~/.bash_profile
+else
+  echo "bash-it already in place."
+fi
+popd
+
+bash-it enable completion git
+
+echo "Hiding the dock..."
+defaults write com.apple.dock autohide -bool true
+killall Dock
 
 echo
 echo "Setup complete!"
