@@ -64,13 +64,21 @@ else
 fi
 popd
 
-bash-it enable completion git
+# bash-it enable completion git
 
 add_line_to_file 'export PATH="/usr/local/sbin:$PATH"' ~/.bash_profile
 
 echo
 
+brew tap spilth/tap
+
 brew install git
+brew install heroku
+brew install htmldoc
+brew install imagemagick@6
+brew install savant
+brew install phantomjs
+
 brew install rbenv
 add_line_to_file 'eval "$(rbenv init -)"' ~/.bash_profile
 
