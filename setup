@@ -52,6 +52,20 @@ echo
 echo "Cleaning up your Homebrew installation..."
 brew cleanup
 
+echo
+pushd ~/
+if [ ! -d ~/.bash_it ]; then
+  echo "Installing bash-it"
+  git clone https://github.com/Bash-it/bash-it.git ~/.bash_it
+  ~/.bash_it/install.sh --silent
+  source ~/.bash_profile
+else
+  echo "bash-it already in place."
+fi
+popd
+
+bash-it enable completion git
+
 add_line_to_file 'export PATH="/usr/local/sbin:$PATH"' ~/.bash_profile
 
 echo
@@ -78,20 +92,6 @@ else
   echo "vim configuration already in place."
 fi
 popd
-
-echo
-pushd ~/
-if [ ! -d ~/.bash_it ]; then
-  echo "Installing bash-it"
-  git clone https://github.com/Bash-it/bash-it.git ~/.bash_it
-  ~/.bash_it/install.sh --silent
-  source ~/.bash_profile
-else
-  echo "bash-it already in place."
-fi
-popd
-
-bash-it enable completion git
 
 echo "Hiding the dock..."
 defaults write com.apple.dock autohide -bool true
