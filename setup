@@ -81,7 +81,7 @@ add_line_to_file 'eval "$(rbenv init -)"' ~/.bash_profile
 
 brew cask install java
 brew tap spilth/tap
-brew install savant
+#brew install savant
 
 brew install flac lame libao libvorbis opencore-amr opusfile mad ffmpeg
 brew install sox --with-opencore-amr --with-opusfile --with-libvorbis --with-flac --with-libsndfile --with-libao --with-lame
