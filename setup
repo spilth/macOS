@@ -70,17 +70,18 @@ add_line_to_file 'export PATH="/usr/local/sbin:$PATH"' ~/.bash_profile
 
 echo
 
-brew tap spilth/tap
-
 brew install git
 brew install heroku
 brew install htmldoc
 brew install imagemagick@6
-brew install savant
 brew install phantomjs
 
 brew install rbenv
 add_line_to_file 'eval "$(rbenv init -)"' ~/.bash_profile
+
+brew cask install java
+brew tap spilth/tap
+brew install savant
 
 brew install flac lame libao libvorbis opencore-amr opusfile mad ffmpeg
 brew install sox --with-opencore-amr --with-opusfile --with-libvorbis --with-flac --with-libsndfile --with-libao --with-lame
