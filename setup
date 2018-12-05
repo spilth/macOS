@@ -73,7 +73,7 @@ echo
 brew install git
 brew install htmldoc
 brew install imagemagick@6
-brew install phantomjs
+brew cask install phantomjs
 
 brew install rbenv
 add_line_to_file 'eval "$(rbenv init -)"' ~/.bash_profile
