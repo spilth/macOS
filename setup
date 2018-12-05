@@ -71,7 +71,6 @@ add_line_to_file 'export PATH="/usr/local/sbin:$PATH"' ~/.bash_profile
 echo
 
 brew install git
-brew install heroku
 brew install htmldoc
 brew install imagemagick@6
 brew install phantomjs
